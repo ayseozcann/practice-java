@@ -1,0 +1,71 @@
+package studentdatabaseapp;
+
+import java.util.Scanner;
+
+public class Student {
+
+	private String firstName;
+	private String lastName;
+	private int gradeYear;
+	private String studentID;
+	private String courses;
+	private int tuitionBalance = 0;
+	private String course;
+	private static int costOfCourse = 600;
+	private static int id = 1000;
+
+	public Student() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Enter student first name: ");
+		this.firstName = scanner.nextLine();
+
+		System.out.print("Enter student last name: ");
+		this.lastName = scanner.nextLine();
+
+		System.out.print("1 - Freshmen\n2 - Sophomore\n3 - Junior\n4 - Senior\nEnter student class level: ");
+		
+		if(this.gradeYear > 0 && this.gradeYear <= 4) {
+			this.gradeYear = scanner.nextInt();
+			setStudentID();
+			System.out.println(firstName + " " + lastName + " " + studentID);
+		}else {
+			System.out.println("Please select true class level from 1 to 4");
+			
+			
+			
+		}
+		
+
+		
+
+	}
+
+	private void setStudentID() {
+		// Grade level + ID
+		id++;
+		this.studentID = gradeYear + "" + id;
+	}
+	
+	public void enroll() {
+		
+		do {
+			System.out.print("Enter course to enroll (Q to quit): ");
+			Scanner scanner = new Scanner(System.in);
+			String course = scanner.nextLine();
+			try {
+				if(!studentID.equals(null)) {
+					courses = courses + "\n" + course;
+					tuitionBalance = tuitionBalance + costOfCourse;
+				}
+			} catch (Exception e) {
+				System.out.println("Please select true class level from 1 to 4");
+				System.out.println("Please try to reenroll");
+			}
+			
+			
+		} while (!course.equalsIgnoreCase("Q"));
+		System.out.println("ENROLLED IN: " + courses);
+		System.out.println("TUITION BALANCE: " + tuitionBalance);
+	}
+
+}

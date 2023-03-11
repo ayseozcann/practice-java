@@ -1,0 +1,2 @@
+System.out.println("Enter student first name: ");
+		this.firstName = scanner.nextLine();
